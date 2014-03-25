@@ -3,6 +3,10 @@ package com.markop159.mylauncher;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -10,55 +14,50 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.GridView;
+
+import java.util.List;
 
 public class MainActivity extends Activity {
+
+    DrawerAdapter drawerAdapterObject;
+
+    GridView drawerGrid;
+
+    class Pac{
+        Drawable icon;
+        String name;
+        String label;
+    }
+
+    Pac[] pacs;
+    PackageManager pm;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_main);
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
+        drawerGrid=(GridView) findViewById(R.id.content);
+
+        pm=getPackageManager();
+        set_packs();
+        drawerAdapterObject=new DrawerAdapter(this,pacs);
+        drawerGrid.setAdapter(drawerAdapterObject);
+
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
+    public void set_packs(){
+        final Intent mainIntent=new Intent(Intent.ACTION_MAIN,null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> pacsList=pm.queryIntentActivities(mainIntent,0);
+        pacs=new Pac[pacsList.size()];
+        for(int i=0;i<pacsList.size();i++){
+            pacs[i]=new Pac();
+            pacs[i].icon=pacsList.get(i).loadIcon(pm);
+            pacs[i].name=pacsList.get(i).activityInfo.packageName;
+            pacs[i].label=pacsList.get(i).loadLabel(pm).toString();
         }
     }
 
