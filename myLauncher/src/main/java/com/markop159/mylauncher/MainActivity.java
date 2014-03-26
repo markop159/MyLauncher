@@ -59,6 +59,7 @@ public class MainActivity extends Activity {
             pacs[i].name=pacsList.get(i).activityInfo.packageName;
             pacs[i].label=pacsList.get(i).loadLabel(pm).toString();
         }
+        new SortApps().exchange_sort(pacs);
     }
 
 }
