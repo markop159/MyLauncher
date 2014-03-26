@@ -58,6 +58,7 @@ public class DrawerAdapter extends BaseAdapter{
             
             convertView.setTag(viewHolder);
             
+            
         }
         
         ImageView imageView=new ImageView(mContext);
