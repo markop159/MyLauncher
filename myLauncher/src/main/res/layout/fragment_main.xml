@@ -14,7 +14,7 @@
         
         <ImageView
             android:id="@+id/handle"
-            android:background="@drawable/ic_launcher"
+            android:background="@drawable/up_arrow_icon2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         
