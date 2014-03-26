@@ -37,9 +37,29 @@ public class DrawerAdapter extends BaseAdapter{
     public long getItemId(int i) {
         return 0;
     }
+    
+    static class ViewHolder{
+        TextView text;
+        ImageView icon;
+    }
 
     @Override
-    public View getView(int pos, View view, ViewGroup viewGroup) {
+    public View getView(int pos, View convertView, ViewGroup viewGroup) {
+        
+        ViewHolder viewHolder;
+        LayoutInflater li= (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        
+        if(convertView==null){
+            convertView=li.inflate(R.layout.drawer_item, null)
+            
+            viewHolder=new vievHolder();
+            viewHolder.text=(TextView)convertView.findViewById(R.id.icon_text);
+            viewHolder.icon=(ImageView)convertView.findViewById(R.id.icon_image);
+            
+            convertView.setTag(viewHolder);
+            
+        }
+        
         ImageView imageView=new ImageView(mContext);
         imageView.setImageDrawable(pacsForAdapter[pos].icon);
         imageView.setLayoutParams(new GridView.LayoutParams(65,65));
