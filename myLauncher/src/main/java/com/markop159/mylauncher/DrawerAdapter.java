@@ -59,14 +59,15 @@ public class DrawerAdapter extends BaseAdapter{
             viewHolder.icon=(ImageView)convertView.findViewById(R.id.icon_image);
             
             convertView.setTag(viewHolder);
-            
-            
         }
-        
-        ImageView imageView=new ImageView(mContext);
-        imageView.setImageDrawable(pacsForAdapter[pos].icon);
-        imageView.setLayoutParams(new GridView.LayoutParams(65,65));
-        imageView.setPadding(3,3,3,3);
-        return imageView;
+        else{
+            viewHolder=(viewHolder)convertView.getTag();
+            
+            viewHolder.text.setText(pacsForAdapter[pos].label);
+            viewHolder.icon.setImageDrawable(pacsForAdapter[pos].icon);
+            
+            return convertView;
+       
+        }
     }
 }
