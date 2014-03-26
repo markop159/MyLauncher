@@ -1,7 +1,7 @@
 package com.markop159.mylauncher;
 
-public class sortApps{
-  public void exchange_sort(mainActivity.Pac[]pacs){
+public class SortApps{
+  public void exchange_sort(MainActivity.Pac[]pacs){
     int i, j;
     MainActivity.Pac temp;
 

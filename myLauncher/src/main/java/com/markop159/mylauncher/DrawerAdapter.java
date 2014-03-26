@@ -60,14 +60,12 @@ public class DrawerAdapter extends BaseAdapter{
             
             convertView.setTag(viewHolder);
         }
-        else{
-            viewHolder=(viewHolder)convertView.getTag();
+        else
+            viewHolder=(ViewHolder) convertView.getTag();
             
-            viewHolder.text.setText(pacsForAdapter[pos].label);
-            viewHolder.icon.setImageDrawable(pacsForAdapter[pos].icon);
-            
-            return convertView;
-       
-        }
+        viewHolder.text.setText(pacsForAdapter[pos].label);
+        viewHolder.icon.setImageDrawable(pacsForAdapter[pos].icon);
+
+        return convertView;
     }
 }
