@@ -35,9 +35,6 @@ public class MainActivity extends Activity {
 
         pm=getPackageManager();
         set_packs();
-        drawerAdapterObject=new DrawerAdapter(this,pacs);
-        drawerGrid.setAdapter(drawerAdapterObject);
-        drawerGrid.setOnItemClickListener(new DrawerClickListener(this, pacs, pm));
         
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_PACKAGE_ADDED);
@@ -60,13 +57,17 @@ public class MainActivity extends Activity {
             pacs[i].label=pacsList.get(i).loadLabel(pm).toString();
         }
         new SortApps().exchange_sort(pacs);
+        drawerAdapterObject=new DrawerAdapter(this,pacs);
+        drawerGrid.setAdapter(drawerAdapterObject);
+        drawerGrid.setOnItemClickListener(new DrawerClickListener(this, pacs, pm));
     }
     
     public class PacReceiver extends BroadcastReceiver{
-	    @Override
-	    public void onReceive(context context, Intent intent){
-		
-	    }
+    	
+    	@Override
+	public void onReceive(context context, Intent intent){
+		set_pacs();
+	}
     }
 
 }
