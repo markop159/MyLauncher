@@ -1,7 +1,10 @@
 package com.markop159.mylauncher;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
@@ -41,7 +44,7 @@ public class MainActivity extends Activity {
         filter.addAction(Intent.ACTION_PACKAGE_REMOVED);
         filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
         filter.addDataScheme("package");
-        registerReceiver(new PacReceiver(),filter);
+        registerReceiver(new PacReceiver(), filter);
 
     }
 
@@ -62,12 +65,12 @@ public class MainActivity extends Activity {
         drawerGrid.setOnItemClickListener(new DrawerClickListener(this, pacs, pm));
     }
     
-    public class PacReceiver extends BroadcastReceiver{
-    	
-    	@Override
-	public void onReceive(context context, Intent intent){
-		set_pacs();
-	}
+    public class PacReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            set_packs();
+        }
     }
 
 }
