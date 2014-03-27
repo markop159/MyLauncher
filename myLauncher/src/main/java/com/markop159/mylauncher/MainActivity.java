@@ -37,6 +37,7 @@ public class MainActivity extends Activity {
         set_packs();
         drawerAdapterObject=new DrawerAdapter(this,pacs);
         drawerGrid.setAdapter(drawerAdapterObject);
+        drawerGrid.setOnItemClickListener(new DrawerClickListener(this,pacs,pm));
 
     }
 
