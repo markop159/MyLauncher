@@ -44,6 +44,14 @@ public class MainActivity extends Activity {
 
         pm=getPackageManager();
         set_packs();
+        slidingDrawer.setOnDrawerOpenListener(new OnDraverOpenListener(){
+           
+           @Override
+           public void onDrawerOpened(){
+               appLaunchable=true;
+           }
+            
+        });
         
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_PACKAGE_ADDED);
