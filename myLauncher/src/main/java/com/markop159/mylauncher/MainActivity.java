@@ -18,6 +18,8 @@ public class MainActivity extends Activity {
     DrawerAdapter drawerAdapterObject;
 
     GridView drawerGrid;
+    SlidingDrawer slidingDrawer;
+    RelativeLayout homeView
 
     class Pac{
         Drawable icon;
@@ -35,6 +37,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.fragment_main);
 
         drawerGrid=(GridView) findViewById(R.id.content);
+        slidingDrawer=(SlidingDrawer) findViewById(R.id.drawer);
+        homeView=(RelativeLayout) findViewById(R.id.home_view);
 
         pm=getPackageManager();
         set_packs();
@@ -63,6 +67,7 @@ public class MainActivity extends Activity {
         drawerAdapterObject=new DrawerAdapter(this,pacs);
         drawerGrid.setAdapter(drawerAdapterObject);
         drawerGrid.setOnItemClickListener(new DrawerClickListener(this, pacs, pm));
+        drawerGrid.setOnItemLongClickListener(new DrawerLongClickListener(this, slidingDrawer, homeView));
     }
     
     public class PacReceiver extends BroadcastReceiver {
