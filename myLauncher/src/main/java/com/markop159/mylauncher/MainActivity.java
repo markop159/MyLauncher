@@ -29,6 +29,8 @@ public class MainActivity extends Activity {
 
     Pac[] pacs;
     PackageManager pm;
+    
+    static boolean appLaunchable = true;
 
 
     @Override
