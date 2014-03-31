@@ -21,7 +21,9 @@ public class DrawerClickListener implements OnItemClickListener {
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-        Intent launchIntent=pmForListener.getLaunchIntentForPackage(pacsForAdapter[pos].name);
-        mContext.startActivity(launchIntent);
+    	if (MainActivity.appLauchable){
+        	Intent launchIntent=pmForListener.getLaunchIntentForPackage(pacsForAdapter[pos].name);
+        	mContext.startActivity(launchIntent);
+    	}
     }
 }
