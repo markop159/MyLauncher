@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.markop159.mylauncher.MainActivity$PlaceholderFragment">
+    tools:context="com.markop159.mylauncher.MainActivity$PlaceholderFragment"
+    android:id="+id/home_view" >
 
     <SlidingDrawer
         android:id="@+id/drawer" 
